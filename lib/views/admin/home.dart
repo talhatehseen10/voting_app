@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:voting/views/authentication/controllers/login_controller.dart';
-import 'package:voting/views/authentication/views/signup_screen.dart';
+import 'package:voting/views/admin/register_candidate.dart';
 import 'package:voting/views/user/candidate_list_screen.dart';
 import 'package:voting/views/user/profile_screen.dart';
 import 'package:voting/views/user/voter_list_screen.dart';
@@ -45,63 +45,71 @@ class Home extends StatelessWidget {
                 );
               }).toList(),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    height: 150,
-                    width: 150,
-                    child: Card(
-                      child: Text(
-                        "\n \n \t Voting time \n \t 09:30 to 12:30",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
-                        ),
-                      ),
-                    )),
-                Container(
-                    height: 150,
-                    width: 150,
-                    child: GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CandidateListScreen(),
-                        ),
-                      ),
-                      child: Card(
-                        child: Text(
-                          "\n \n \t Candidate List",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          ),
-                        ),
-                      ),
-                    )),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: Card(
+                            child: Text(
+                              "\n \n \t Voting time \n \t 09:30 to 12:30",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                            ),
+                          )),
+                      SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(const CandidateListScreen());
+                            },
+                            child: const Card(
+                              child: Text(
+                                "\n \n \t Candidate List",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const VoterListScreen(),
+                              ),
+                            ),
+                            child: Card(
+                              child: Text(
+                                "\n\nCast your Vote here",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            Container(
-                height: 150,
-                width: 150,
-                child: GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VoterListScreen(),
-                    ),
-                  ),
-                  child: Card(
-                    child: Text(
-                      "\n\nCast your Vote here",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                )),
           ],
         ),
       ),
@@ -152,17 +160,30 @@ class Home extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Get.to(const SignUpScreen());
-            },
-            title: const Text("Add Candidate"),
-            trailing: const Icon(Icons.person_add_outlined),
-          ),
-          ListTile(
-            onTap: () {
               loginController.userSignOut();
             },
             title: const Text("Log out"),
             trailing: const Icon(Icons.logout_outlined),
+          ),
+          ListTile(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUpScreen(),
+              ),
+            ),
+            title: const Text("Add Voter"),
+            trailing: const Icon(Icons.person_add_outlined),
+          ),
+          ListTile(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUpScreen(),
+              ),
+            ),
+            title: const Text("Add Candidate"),
+            trailing: const Icon(Icons.person_add),
           ),
         ],
       ),

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:voting/views/admin/register_candidate.dart';
 
 class CandidateListScreen extends StatelessWidget {
   const CandidateListScreen({super.key});
@@ -7,6 +9,14 @@ class CandidateListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(const SignUpScreen());
+        },
+        child: const Icon(
+          Icons.person_add_outlined,
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
         centerTitle: true,

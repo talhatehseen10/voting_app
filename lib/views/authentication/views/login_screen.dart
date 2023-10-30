@@ -36,7 +36,7 @@ class LoginScreen extends GetView<LoginController> {
                 height: 10,
               ),
               CustomTextfieldWithTitle(
-                hintText: "Email",
+                hintText: "",
                 controller: controller.emailController,
                 title: "Email",
                 validator: (val) {
@@ -50,7 +50,7 @@ class LoginScreen extends GetView<LoginController> {
                 height: 10,
               ),
               CustomTextfieldWithTitle(
-                hintText: "Password",
+                hintText: "",
                 isObscureText: true,
                 controller: controller.passwordController,
                 title: "Password",

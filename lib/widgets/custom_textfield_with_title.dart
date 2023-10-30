@@ -38,13 +38,13 @@ class CustomTextfieldWithTitle extends StatelessWidget {
           validator: validator,
           obscureText: isObscureText,
           decoration: InputDecoration(
-            hintText: hintText,
+            labelText: hintText,
             filled: true,
             fillColor: Colors.grey.shade200,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(
-                  18,
+                  6,
                 )),
           ),
         ),
