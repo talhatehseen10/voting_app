@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "805261634164",
+    "project_id": "online-voting-system-c5632",
+    "storage_bucket": "online-voting-system-c5632.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805261634164:android:47909902529a3379c73f21",
+        "android_client_info": {
+          "package_name": "com.example.voting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYo9BL5fuwnOs30LKkF9-8dnQFaQHAPeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805261634164:android:36f187c52f92de3fc73f21",
+        "android_client_info": {
+          "package_name": "com.example.voting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYo9BL5fuwnOs30LKkF9-8dnQFaQHAPeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
