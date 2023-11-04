@@ -39,6 +39,7 @@ class CustomTextfieldWithTitle extends StatelessWidget {
           obscureText: isObscureText,
           decoration: InputDecoration(
             labelText: hintText,
+            hintText: hintText,
             filled: true,
             fillColor: Colors.grey.shade200,
             border: OutlineInputBorder(

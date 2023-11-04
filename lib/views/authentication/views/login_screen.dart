@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voting/views/authentication/controllers/login_controller.dart';
+import 'package:voting/views/authentication/views/sign_up_screen.dart';
 import 'package:voting/widgets/custom_textfield_with_title.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -36,9 +37,9 @@ class LoginScreen extends GetView<LoginController> {
                 height: 10,
               ),
               CustomTextfieldWithTitle(
-                hintText: "",
+                hintText: "Email",
                 controller: controller.emailController,
-                title: "Email",
+                title: '',
                 validator: (val) {
                   if (val!.isEmpty) {
                     return "Required";
@@ -50,10 +51,10 @@ class LoginScreen extends GetView<LoginController> {
                 height: 10,
               ),
               CustomTextfieldWithTitle(
-                hintText: "",
+                hintText: "Password",
                 isObscureText: true,
                 controller: controller.passwordController,
-                title: "Password",
+                title: "",
                 validator: (val) {
                   if (val!.isEmpty) {
                     return "Required";
@@ -102,9 +103,14 @@ class LoginScreen extends GetView<LoginController> {
               const SizedBox(
                 height: 5,
               ),
-              const Text(
-                "Create your Account?",
-                style: TextStyle(color: Colors.grey),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const SignupScreen());
+                },
+                child: const Text(
+                  "Create your Account?",
+                  style: TextStyle(color: Colors.grey),
+                ),
               ),
             ],
           ),

@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text("Online Voting System"),
       ),
-      drawer: _drawer(context),
+      drawer: _drawer(context, loginController),
       body: Center(
         child: Column(
           children: [
@@ -31,8 +31,8 @@ class HomeScreen extends StatelessWidget {
                   builder: (BuildContext context) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 5.0, vertical: 8.0),
                       decoration: BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
@@ -115,7 +115,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _drawer(BuildContext context) {
+  Widget _drawer(BuildContext context, LoginController controller) {
     return Drawer(
       elevation: 1,
       shadowColor: Colors.green,
@@ -148,12 +148,11 @@ class HomeScreen extends StatelessWidget {
             height: 10,
           ),
           ListTile(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ProfileScreen(),
-              ),
-            ),
+            onTap: () {
+              Get.to(ProfileScreen(
+                data: controller.userData!,
+              ));
+            },
             title: const Text("Profile"),
             trailing: const Icon(Icons.person_rounded),
           ),

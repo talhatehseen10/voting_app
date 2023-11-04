@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import 'package:voting/views/authentication/controllers/login_controller.dart';
 import 'package:voting/widgets/custom_textfield_with_title.dart';
 
-class RegisterCandidate extends GetView<LoginController> {
-  const RegisterCandidate({super.key});
+class SignupScreen extends GetView<LoginController> {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Candidate Registeration"),
+        title: const Text("Voter Registeration"),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -124,65 +124,79 @@ class RegisterCandidate extends GetView<LoginController> {
                                 ),
                                 backgroundColor: Colors.black,
                                 elevation: 2),
-                            onPressed: () {
+                            onPressed: () async {
                               if (controller.formKey.currentState!.validate()) {
                                 controller.isLoading.value = true;
-                                FirebaseAuth.instance
-                                    .createUserWithEmailAndPassword(
-                                        email: controller
-                                            .registerEmailController.text,
-                                        password: controller
-                                            .registerPasswordController.text)
-                                    .then((value) {
-                                  if (value.user!.email!.isNotEmpty) {
-                                    FirebaseFirestore.instance
-                                        .collection("users")
-                                        .add({
-                                      "name": controller.nameController.text,
-                                      "email": controller
-                                          .registerEmailController.text,
-                                      "mobileno":
-                                          controller.mobilenoController.text,
-                                      "cnic": controller.cnicnoController.text,
-                                      "password": controller
-                                          .registerPasswordController.text,
-                                      "dob": controller.dobController.text,
-                                      "address":
-                                          controller.addressController.text,
-                                      "party": "",
-                                      "profile_picture": "",
-                                      "isactive": true,
-                                      "role": "candidate",
-                                      "status": "accepted"
-                                    
-                                    }).then((value) {
-                                      controller.isLoading.value = false;
-                                      if (value.id.isNotEmpty) {
-                                        Get.snackbar(
-                                          "Successful",
-                                          "Candidate Added Sucessfully",
-                                          icon: const Icon(
-                                            Icons.check_circle_outline_outlined,
-                                            color: Colors.green,
-                                            size: 24,
-                                          ),
-                                        );
-                                        controller.registerEmailController
-                                            .clear();
-                                        controller.registerPasswordController
-                                            .clear();
-                                        controller.nameController.clear();
-                                        controller.mobilenoController.clear();
-                                        controller.cnicnoController.clear();
-                                        controller.dobController.clear();
-                                        controller.addressController.clear();
-                                        Get.back();
-                                      }
-                                    });
-                                  } else {
+                                try {
+                                  await FirebaseAuth.instance
+                                      .createUserWithEmailAndPassword(
+                                          email: controller
+                                              .registerEmailController.text,
+                                          password: controller
+                                              .registerPasswordController.text)
+                                      .then((outerValue) {
                                     controller.isLoading.value = false;
-                                  }
-                                });
+
+                                    if (outerValue.user!.email!.isNotEmpty) {
+                                      FirebaseFirestore.instance
+                                          .collection("users").doc(outerValue.user!.uid)
+                                          .set({
+                                        "name": controller.nameController.text,
+                                        "email": controller
+                                            .registerEmailController.text,
+                                        "mobileno":
+                                            controller.mobilenoController.text,
+                                        "cnic":
+                                            controller.cnicnoController.text,
+                                        "password": controller
+                                            .registerPasswordController.text,
+                                        "dob": controller.dobController.text,
+                                        "address":
+                                            controller.addressController.text,
+                                        "party": "",
+                                        "profile_picture": "",
+                                        "isactive": false,
+                                        "role": "voter",
+                                        "status": "pending"
+                                      }).then((value) {
+                                        if (true) {
+                                          Get.snackbar(
+                                            "Successful",
+                                            "Voter Added Sucessfully",
+                                            icon: const Icon(
+                                              Icons
+                                                  .check_circle_outline_outlined,
+                                              color: Colors.green,
+                                              size: 24,
+                                            ),
+                                          );
+                                          controller.registerEmailController
+                                              .clear();
+                                          controller.registerPasswordController
+                                              .clear();
+                                          controller.nameController.clear();
+                                          controller.mobilenoController.clear();
+                                          controller.cnicnoController.clear();
+                                          controller.dobController.clear();
+                                          controller.addressController.clear();
+                                        }
+                                      });
+                                    } else {
+                                      controller.isLoading.value = false;
+                                    }
+                                  });
+                                } on FirebaseAuthException catch (e) {
+                                  controller.isLoading.value = false;
+                                  Get.snackbar(
+                                    "Failed",
+                                    e.code,
+                                    icon: const Icon(
+                                      Icons.cancel_rounded,
+                                      color: Colors.red,
+                                      size: 24,
+                                    ),
+                                  );
+                                }
                               }
                             },
                             child: const Text(

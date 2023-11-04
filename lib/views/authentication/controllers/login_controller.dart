@@ -26,8 +26,8 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController = TextEditingController(text: "admin@gmail.com");
+    passwordController = TextEditingController(text: "111222");
     nameController = TextEditingController();
     registerEmailController = TextEditingController();
     registerPasswordController = TextEditingController();
@@ -97,6 +97,7 @@ class LoginController extends GetxController {
   void userSignOut() {
     FirebaseAuth.instance.signOut();
     userData!.clear();
-    Get.offAndToNamed(AppRoutes.LOGIN);
+    Get.offAllNamed(AppRoutes.LOGIN);
+    // Get.offAndToNamed(AppRoutes.LOGIN);
   }
 }

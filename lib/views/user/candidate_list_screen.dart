@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voting/views/admin/register_candidate.dart';
+import 'package:voting/views/user/profile_screen.dart';
 
 class CandidateListScreen extends StatelessWidget {
   const CandidateListScreen({super.key});
@@ -11,7 +12,7 @@ class CandidateListScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(const SignUpScreen());
+          Get.to(const RegisterCandidate());
         },
         child: const Icon(
           Icons.person_add_outlined,
@@ -34,6 +35,10 @@ class CandidateListScreen extends StatelessWidget {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
+                  onTap: () {
+                    Get.to(
+                        ProfileScreen(data: snapshot.data!.docs[index].data()));
+                  },
                   leading: const CircleAvatar(
                     radius: 20,
                   ),
