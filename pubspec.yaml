@@ -40,6 +40,8 @@ dependencies:
   firebase_auth:
   get:
   cloud_firestore:
+  intl:
+  syncfusion_flutter_pdfviewer:
 
 dev_dependencies:
   flutter_test:

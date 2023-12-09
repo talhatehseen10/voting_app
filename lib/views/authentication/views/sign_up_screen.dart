@@ -25,6 +25,7 @@ class SignupScreen extends GetView<LoginController> {
                 children: [
                   CustomTextfieldWithTitle(
                     controller: controller.nameController,
+                    keyboardType: TextInputType.name,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -37,6 +38,7 @@ class SignupScreen extends GetView<LoginController> {
                   ),
                   CustomTextfieldWithTitle(
                     controller: controller.registerEmailController,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -49,6 +51,7 @@ class SignupScreen extends GetView<LoginController> {
                   ),
                   CustomTextfieldWithTitle(
                     controller: controller.mobilenoController,
+                    keyboardType: TextInputType.phone,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -61,6 +64,7 @@ class SignupScreen extends GetView<LoginController> {
                   ),
                   CustomTextfieldWithTitle(
                     controller: controller.cnicnoController,
+                    keyboardType: TextInputType.number,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -73,6 +77,7 @@ class SignupScreen extends GetView<LoginController> {
                   ),
                   CustomTextfieldWithTitle(
                     controller: controller.registerPasswordController,
+                    keyboardType: TextInputType.visiblePassword,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -85,6 +90,7 @@ class SignupScreen extends GetView<LoginController> {
                   ),
                   CustomTextfieldWithTitle(
                     controller: controller.dobController,
+                    keyboardType: TextInputType.datetime,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -97,6 +103,7 @@ class SignupScreen extends GetView<LoginController> {
                   ),
                   CustomTextfieldWithTitle(
                     controller: controller.addressController,
+                    keyboardType: TextInputType.streetAddress,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Required";
@@ -139,7 +146,8 @@ class SignupScreen extends GetView<LoginController> {
 
                                     if (outerValue.user!.email!.isNotEmpty) {
                                       FirebaseFirestore.instance
-                                          .collection("users").doc(outerValue.user!.uid)
+                                          .collection("users")
+                                          .doc(outerValue.user!.uid)
                                           .set({
                                         "name": controller.nameController.text,
                                         "email": controller

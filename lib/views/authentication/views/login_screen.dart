@@ -50,17 +50,26 @@ class LoginScreen extends GetView<LoginController> {
               const SizedBox(
                 height: 10,
               ),
-              CustomTextfieldWithTitle(
-                hintText: "Password",
-                isObscureText: true,
-                controller: controller.passwordController,
-                title: "",
-                validator: (val) {
-                  if (val!.isEmpty) {
-                    return "Required";
-                  }
-                  return null;
-                },
+              Obx(
+                () => CustomTextfieldWithTitle(
+                  hintText: "Password",
+                  isObscureText: controller.isObsure.value,
+                  controller: controller.passwordController,
+                  title: "",
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return "Required";
+                    }
+                    return null;
+                  },
+                  suffix: GestureDetector(
+                      onTap: () {
+                        controller.isObsure.value = !controller.isObsure.value;
+                      },
+                      child: controller.isObsure.value
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off)),
+                ),
               ),
               const SizedBox(
                 height: 40,

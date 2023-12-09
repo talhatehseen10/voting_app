@@ -3,8 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:voting/views/authentication/controllers/login_controller.dart';
 import 'package:voting/views/user/candidate_list_screen.dart';
+import 'package:voting/views/user/cast_vote_screen.dart';
 import 'package:voting/views/user/profile_screen.dart';
-import 'package:voting/views/user/voter_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Online Voting System"),
@@ -26,7 +26,12 @@ class HomeScreen extends StatelessWidget {
             CarouselSlider(
               options: CarouselOptions(
                   height: 200.0, enlargeCenterPage: true, autoPlay: true),
-              items: ["assets/image5.jpg"].map((i) {
+              items: [
+                "assets/1.jpg",
+                "assets/2.jpg",
+                "assets/3.jpg",
+                "assets/4.jpg",
+              ].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
@@ -34,11 +39,11 @@ class HomeScreen extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 5.0, vertical: 8.0),
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(i),
-                          ),
-                          color: Colors.amber),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(i),
+                        ),
+                      ),
                     );
                   },
                 );
@@ -51,59 +56,71 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(
-                          height: 150,
-                          width: 150,
+                      Expanded(
                           child: Card(
-                            child: Text(
-                              "\n \n \t Voting time \n \t 09:30 to 12:30",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
-                              ),
-                            ),
-                          )),
-                      SizedBox(
+                        child: Container(
                           height: 150,
-                          width: 150,
+                          padding: const EdgeInsets.all(10),
+                          child: const Text(
+                            "\n \n \t Voting time \n \t 09:30 to 12:30",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
+                      )),
+                      Expanded(
                           child: GestureDetector(
-                            onTap: () {
-                              Get.to(const CandidateListScreen());
-                            },
-                            child: const Card(
+                        onTap: () {
+                          Get.to(CandidateListScreen());
+                        },
+                        child: Card(
+                          child: Container(
+                            height: 150,
+                            padding: const EdgeInsets.all(10),
+                            child: const Center(
                               child: Text(
-                                "\n \n \t Candidate List",
+                                "Candidate List",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17,
                                 ),
                               ),
                             ),
-                          )),
+                          ),
+                        ),
+                      )),
                     ],
                   ),
                   Row(
                     children: [
-                      SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const VoterListScreen(),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(CastVoteScreen());
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 150,
+                              padding: const EdgeInsets.all(10),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Cast Voter",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Card(
-                              child: Text(
-                                "\n\nCast your Vote here",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                          )),
+                          ),
+                        ),
+                      ),
+                      const Expanded(child: SizedBox()),
                     ],
                   ),
                 ],
@@ -123,26 +140,23 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: Get.height * 0.06,
+            height: Get.height * 0.08,
           ),
-          Card(
-            elevation: 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CircleAvatar(
-                  radius: 80,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(loginController.userData!['name']),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(loginController.userData!['email']),
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircleAvatar(
+                radius: 80,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(loginController.userData!['name']),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(loginController.userData!['email']),
+            ],
           ),
           const SizedBox(
             height: 10,

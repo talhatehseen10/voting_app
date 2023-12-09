@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
+import 'package:voting/views/admin/pdf_screen.dart';
+import 'package:voting/views/admin/result_screen.dart';
+import 'package:voting/views/admin/voting.dart';
 import 'package:voting/views/authentication/controllers/login_controller.dart';
 import 'package:voting/views/user/candidate_list_screen.dart';
 import 'package:voting/views/user/profile_screen.dart';
@@ -14,7 +17,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Admin"),
@@ -26,7 +29,12 @@ class Home extends StatelessWidget {
             CarouselSlider(
               options: CarouselOptions(
                   height: 200.0, enlargeCenterPage: true, autoPlay: true),
-              items: ["assets/image5.jpg"].map((i) {
+              items: [
+                "assets/1.jpg",
+                "assets/2.jpg",
+                "assets/3.jpg",
+                "assets/4.jpg",
+              ].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
@@ -34,11 +42,11 @@ class Home extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 5.0, vertical: 8.0),
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(i),
-                          ),
-                          color: Colors.amber),
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(i),
+                        ),
+                      ),
                     );
                   },
                 );
@@ -52,28 +60,23 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Card(
-                          child: Container(
-                            height: 150,
-                            padding: const EdgeInsets.all(10),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  "Voting time",
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => Voting());
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 150,
+                              padding: const EdgeInsets.all(10),
+                              child: const Center(
+                                child: Text(
+                                  "Voting",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(
-                                  "09:30 to 12:30",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
@@ -81,7 +84,7 @@ class Home extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(const CandidateListScreen());
+                            Get.to(() => CandidateListScreen());
                           },
                           child: Card(
                             child: Container(
@@ -110,7 +113,7 @@ class Home extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(const VoterListScreen());
+                            Get.to(() => const VoterListScreen());
                           },
                           child: Card(
                             child: Container(
@@ -132,7 +135,31 @@ class Home extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Expanded(child: SizedBox()),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => const ResultScreen());
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 150,
+                              padding: const EdgeInsets.all(10),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Result Screen",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -152,26 +179,23 @@ class Home extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: Get.height * 0.06,
+            height: Get.height * 0.08,
           ),
-          Card(
-            elevation: 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CircleAvatar(
-                  radius: 80,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(loginController.userData!['name']),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(loginController.userData!['email']),
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircleAvatar(
+                radius: 80,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(loginController.userData!['name']),
+              const SizedBox(
+                height: 4,
+              ),
+              Text(loginController.userData!['email']),
+            ],
           ),
           const SizedBox(
             height: 10,
@@ -182,6 +206,13 @@ class Home extends StatelessWidget {
             },
             title: const Text("Profile"),
             trailing: const Icon(Icons.person_rounded),
+          ),
+          ListTile(
+            onTap: () {
+              Get.to(const PDFScreen());
+            },
+            title: const Text("Circular"),
+            trailing: const Icon(Icons.picture_as_pdf),
           ),
           ListTile(
             onTap: () {

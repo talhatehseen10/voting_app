@@ -7,12 +7,16 @@ class CustomTextfieldWithTitle extends StatelessWidget {
       this.isObscureText = false,
       required this.title,
       this.controller,
-      this.validator});
+      this.keyboardType,
+      this.validator,
+      this.suffix});
   final String title;
   final String hintText;
   final bool isObscureText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +41,18 @@ class CustomTextfieldWithTitle extends StatelessWidget {
           controller: controller,
           validator: validator,
           obscureText: isObscureText,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.only(left: 10),
             labelText: hintText,
+            labelStyle: const TextStyle(fontSize: 14),
             hintText: hintText,
             filled: true,
             fillColor: Colors.grey.shade200,
+            suffix: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: suffix,
+            ),
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(

@@ -39,7 +39,9 @@ class _VoterListScreenState extends State<VoterListScreen> {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.orange.shade100,
+                        color: status == "accepted"
+                            ? Colors.orange.shade100
+                            : Colors.grey.shade100,
                       ),
                       child: const Center(
                         child: Text(
@@ -65,7 +67,9 @@ class _VoterListScreenState extends State<VoterListScreen> {
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Colors.orange.shade100,
+                        color: status == "pending"
+                            ? Colors.orange.shade100
+                            : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const Center(
@@ -92,7 +96,9 @@ class _VoterListScreenState extends State<VoterListScreen> {
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Colors.orange.shade100,
+                        color: status == "rejected"
+                            ? Colors.orange.shade100
+                            : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const Center(
@@ -171,7 +177,7 @@ class _VoterListScreenState extends State<VoterListScreen> {
                                               "isactive":
                                                   value.docs.first["isactive"],
                                               "role": value.docs.first["role"],
-                                              "status": "accepted"
+                                              "status": "rejected"
                                             });
                                           });
                                         },
@@ -194,7 +200,25 @@ class _VoterListScreenState extends State<VoterListScreen> {
                                                 .collection("users")
                                                 .doc(value.docs.first.id)
                                                 .set({
-                                              "status": "accepted",
+                                              "name": value.docs.first["name"],
+                                              "email":
+                                                  value.docs.first["email"],
+                                              "mobileno":
+                                                  value.docs.first["mobileno"],
+                                              "cnic": value.docs.first["cnic"],
+                                              "password":
+                                                  value.docs.first["password"],
+                                              "dob": value.docs.first["dob"],
+                                              "address":
+                                                  value.docs.first["address"],
+                                              "party":
+                                                  value.docs.first["party"],
+                                              "profile_picture": value.docs
+                                                  .first["profile_picture"],
+                                              "isactive":
+                                                  value.docs.first["isactive"],
+                                              "role": value.docs.first["role"],
+                                              "status": "accepted"
                                             });
                                           });
                                         },

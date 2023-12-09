@@ -36,6 +36,30 @@ class ProfileScreen extends StatelessWidget {
                   : Column(
                       children: [
                         ListTile(
+                          leading: const Text("Email",
+                              style: TextStyle(
+                                fontSize: 15,
+                              )),
+                          trailing: Text(
+                            data["email"],
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        ListTile(
+                          leading: const Text("Password",
+                              style: TextStyle(
+                                fontSize: 15,
+                              )),
+                          trailing: Text(
+                            data["password"],
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        ListTile(
                           leading: const Text("Mobile no",
                               style: TextStyle(
                                 fontSize: 15,
