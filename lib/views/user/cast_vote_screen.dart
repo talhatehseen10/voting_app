@@ -14,18 +14,17 @@ class _CastVoteScreenState extends State<CastVoteScreen> {
   bool isStarted = false;
   bool showLoader = true;
   bool isVoteCasted = false;
+  int selectedIndex = 0;
+  bool showButton = false;
   List votes = [];
   List voters = [];
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> getStatus() async {
     await FirebaseFirestore.instance.collection("voting").get().then((value) {
+      showLoader = false;
       setState(() {
         isStarted = value.docs.first['isStarted'];
-        if (isStarted) {
-          getVotes();
-        }
-        showLoader = false;
       });
     });
   }
@@ -37,7 +36,7 @@ class _CastVoteScreenState extends State<CastVoteScreen> {
         .get()
         .then((value) {
       var data = value.data();
-
+      print("EXE");
       if (data!["votes"].length == 0) {
       } else if (data["votes"]
           .contains(FirebaseAuth.instance.currentUser!.email)) {
@@ -45,6 +44,13 @@ class _CastVoteScreenState extends State<CastVoteScreen> {
           isVoteCasted = true;
           voters = data["votes"];
           votes = data["votes_to"];
+          print(votes);
+        });
+      } else if (data["votes"].length > 0) {
+        setState(() {
+          voters = data["votes"];
+          votes = data["votes_to"];
+          print(votes);
         });
       }
     });
@@ -53,6 +59,7 @@ class _CastVoteScreenState extends State<CastVoteScreen> {
   @override
   void initState() {
     getStatus();
+    getVotes();
     super.initState();
   }
 
@@ -64,6 +71,24 @@ class _CastVoteScreenState extends State<CastVoteScreen> {
         centerTitle: true,
         title: const Text('Candiates List'),
       ),
+      floatingActionButton: showButton
+          ? FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {
+                FirebaseFirestore.instance
+                    .collection("votes")
+                    .doc(DateFormat('dd-MM-yyyy').format(DateTime.now()))
+                    .set({
+                  "start_time": "09:00 AM",
+                  "end_time": "05:00 PM",
+                  "votes": voters,
+                  "votes_to": votes,
+                  "isStopped": true,
+                  "date": DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                });
+                getVotes();
+              })
+          : const SizedBox(),
       body: showLoader
           ? const Center(
               child: CircularProgressIndicator(),
@@ -104,28 +129,22 @@ class _CastVoteScreenState extends State<CastVoteScreen> {
                                   subtitle: Text(
                                       "${snapshot.data!.docs[index]['party']}"),
                                   trailing: Checkbox(
-                                      value: votes
-                                              .contains(auth.currentUser!.email)
-                                          ? true
-                                          : false,
-                                      onChanged: (value) {
-                                        voters.add(FirebaseAuth
-                                            .instance.currentUser!.email!);
-                                            votes.add(snapshot.data!.docs[index]['email']);
-                                        FirebaseFirestore.instance
-                                            .collection("votes")
-                                            .doc(DateFormat('dd-MM-yyyy')
-                                                .format(DateTime.now()))
-                                            .set({
-                                          "start_time": "09:00 AM",
-                                          "end_time": "05:00 PM",
-                                          "votes": voters,
-                                          "votes_to": votes,
-                                          "isStopped": true,
-                                          "date": DateFormat('dd-MM-yyyy')
-                                              .format(DateTime.now()),
+                                      // value: votes
+                                      //         .contains(auth.currentUser!.email)
+                                      //     ? true
+                                      //     : false,
+                                      value:
+                                          selectedIndex == index ? true : false,
+                                      onChanged: (value) async {
+                                        setState(() {
+                                          print(votes);
+                                          voters.add(FirebaseAuth
+                                              .instance.currentUser!.email!);
+                                          votes.add(snapshot.data!.docs[index]
+                                              ['email']);
+                                          selectedIndex = index;
+                                          showButton = true;
                                         });
-                                        getVotes();
                                       }),
                                 );
                               },

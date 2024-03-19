@@ -5,7 +5,25 @@
     "storage_bucket": "online-voting-system-d7618.appspot.com"
   },
   "client": [
-    
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859186453618:android:bcf66db8746fbd5580f6eb",
+        "android_client_info": {
+          "package_name": "com.example.voting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClaVJE_b-xsr9Z4psr_j-M6dC6iDIq9wY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:859186453618:android:0f89b0510147562480f6eb",

@@ -92,6 +92,8 @@ class CandidateListScreen extends StatelessWidget {
                                         loginController.isLoading.value = true;
 
                                         Get.back();
+                                        loginController.isLoading.value = false;
+
                                         await FirebaseAuth.instance
                                             .signInWithEmailAndPassword(
                                                 email: loginController

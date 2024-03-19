@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                           height: 150,
                           padding: const EdgeInsets.all(10),
                           child: const Text(
-                            "\n \n \t Voting time \n \t 09:30 to 12:30",
+                            "\n \n \t Voting time \n09:00 to 05:00 PM",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,

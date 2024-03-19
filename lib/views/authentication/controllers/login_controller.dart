@@ -53,49 +53,250 @@ class LoginController extends GetxController {
       "Tando Allahyar",
       "Tando Muhammad Khan"
     ],
-    "Bandhore": [""],
-    "Karachi": [""],
-    "Larkana": [""],
-    "Mirpurkhas": [""],
-    "Sukkur": [""],
-    "Shaheed Benazir Abad": [""],
+    "Banbhore": [
+      "Badin",
+      "Sujawal",
+      "Thatta",
+    ],
+    "Karachi": [
+      "Karachi Central",
+      "Karachi East",
+      "Karachi South",
+      "Karachi West",
+      "Korangi",
+      "Malir",
+      "Keamari"
+    ],
+    "Larkana": [
+      "Jacobabad",
+      "Kashmore",
+      "Larkana",
+      "Qambar-Shahdadkot",
+      "Shikarpur"
+    ],
+    "Mirpurkhas": [
+      "Mirpur Khas",
+      "Tharparkar",
+      "Umerkot",
+    ],
+    "Sukkur": [
+      "Ghotki",
+      "Khairpur Mirs",
+      "Sukkur",
+    ],
+    "Shaheed Benazir Abad": [
+      "Naushahro Feroze",
+      "Shaheed Benazir Abad",
+      "Sanghar",
+    ],
   };
 
   Map<String, List<String>> tehsils = {
     "Hyderabad": [
-      "Hyderabad City Tehsil",
-      "Hyderabad Tehsil",
-      "Latifabad Tehsil",
-      "Qasimabad Tehsil",
+      "Hyderabad City",
+      "Hyderabad",
+      "Latifabad",
+      "Qasimabad",
     ],
     "Dadu": [
-      'Dadu Tehsil',
-      'Johi Tehsil',
-      'Khairpur Nathan Shah Tehsil',
-      'Mehar Tehsil',
+      'Dadu',
+      'Johi',
+      'Khairpur Nathan Shah',
+      'Mehar',
     ],
     "Jamshoro": [
-      'Kotri Tehsil',
-      'Sehwan Tehsil',
-      'Manjhand Tehsil',
-      'Thana Bulla Khan Tehsil',
+      'Kotri',
+      'Sehwan',
+      'Manjhand',
+      'Thana Bulla Khan',
     ],
     "Matiari": [
-      'Hala Tehsil',
-      'Matiari Tehsil',
-      'Saeedabad Tehsil',
+      'Hala',
+      'Matiari',
+      'Saeedabad',
     ],
     "Tando Allahyar": [
-      'Chamber Tehsil',
-      'Jhando Mari Tehsil',
-      'Tando Allahyar Tehsil',
-      'Nasarpur Tehsil',
+      'Chamber',
+      'Jhando Mari',
+      'Tando Allahyar',
+      'Nasarpur',
     ],
     "Tando Muhammad Khan": [
-      'Bulri Shah Karim Tehsil',
-      'Tando Ghulam Hyder Tehsil',
-      'Tando Mohammad Khan Tehsil',
+      'Bulri Shah Karim',
+      'Tando Ghulam Hyder',
+      'Tando Mohammad Khan',
     ],
+    "Badin": [
+      'Badin',
+      'Khoski',
+      'Matli',
+      'Shaheed Fazil Rahu',
+      'Talhar',
+      'Tando Bago',
+    ],
+    "Sujawal": [
+      'Jati',
+      'Kharo Chan',
+      'Mirpur Bathoro',
+      'Shah Bandar',
+      'Sujawal',
+    ],
+    "Thatta": [
+      'Ghorabari',
+      'Keti Bunder',
+      'Mirpur Sakro',
+      'Thatta',
+    ],
+    "Karachi Central": [
+      'Gulberg Town',
+      'Liaquatabad Town',
+      'New Karachi Town',
+      'North Nazimabad Town',
+      'Nazimabad',
+    ],
+    "Karachi East": [
+      'Gulistan-e-Jouhar (G-E-J)',
+      'Gulshan Town',
+      'Jamshed Town',
+      'Ferozabad',
+      'Gulshan-E-Iqbal',
+      'Gulzar-E-Hijri',
+    ],
+    "Karachi South": [
+      'Lyari Town',
+      'Saddar Town',
+      'Aram Bagh',
+      'Civil Line',
+      'Garden',
+    ],
+    "Karachi West": [
+      'Orangi Town',
+      'Manghopir',
+      'Maripur',
+      'Mominabad',
+      'Ittehad Town',
+      'Baldia Town',
+    ],
+    "Korangi": [
+      'Korangi Town',
+      'Landhi Town',
+      'Shah Faisal Town',
+      'Model Colony',
+    ],
+    "Malir": [
+      'Bin Qasim Town',
+      'Gadap Town',
+      'Malir Town',
+      'Jinnah',
+      'Ibrahim Hyderi',
+      'Murad Memon',
+      'Shah Murad',
+    ],
+    "Keamari": [
+      "Keamari Town",
+      "Baldia Town",
+      "S.I.T.E. Town",
+      "Karachi Fish Harbour"
+    ],
+    "Jacobabad": [
+      'Garhi Khairo',
+      'Jacobabad',
+      'Thul',
+    ],
+    "Kashmore": [
+      'Kandhkot',
+      'Kashmore',
+      'Tangwani',
+    ],
+    "Larkana": [
+      'Bakrani',
+      'Dokri',
+      'Larkana',
+      'Ratodero',
+    ],
+    "Qambar-Shahdadkot": [
+      'Mirokhan',
+      'Nasirabad',
+      'Qambar',
+      'Qubo Saeed Khan',
+      'Shahdadkot',
+      'Sijawal Junejo',
+      'Warah',
+    ],
+    "Shikarpur": [
+      "Garhi Yasin",
+      "Khanpur",
+      "Lakhi",
+      "Shikarpur",
+    ],
+    "Mirpur Khas": [
+      'Digri',
+      'Jhuddo',
+      'Kot Ghulam Muhammad',
+      'Mirpur Khas',
+      'Shujabad',
+      'Sindhri',
+    ],
+    "Tharparkar": [
+      'Chachro',
+      'Dahli',
+      'Diplo',
+      'Kaloi',
+      'Islmakot',
+      'Mithi',
+      'Nagarparkar'
+    ],
+    "Umerkot": [
+      "Kunri",
+      "Pithoro",
+      "Samaro",
+      "Umerkot",
+    ],
+    "Ghotki": [
+      'Daharki',
+      'Ghotki',
+      'Khangarh (Khanpur)',
+      'Mirpur Mathelo',
+      'Ubauro'
+    ],
+    "Khairpur Mirs": [
+      'Faiz Ganj',
+      'Gambat',
+      'Khairpur Mirs',
+      'Kingri',
+      'Kot Diji',
+      'Nara',
+      'Sobho Dero',
+      'Thari Mirwah',
+    ],
+    "Sukkur": [
+      'New Sukkur',
+      'Pano Aqil',
+      'Rohri',
+      'Salehpat',
+      'Sukkur',
+    ],
+    'Naushahro Feroze': [
+      "Bhiria",
+      "Kandiaro",
+      "Mehrabpur",
+      "Moro",
+      "Naushahro Feroze"
+    ],
+    "Shaheed Benazir Abad": [
+      'Daulatpur (now Kazi Ahmed)',
+      'Daur (2004)',
+      'Nawabshah (1907)',
+      'Sakrand (1858)'
+    ],
+    "Sanghar": [
+      'Jam Nawaz Ali',
+      'Khipro',
+      'Sanghar',
+      'Shahdadpur',
+      'Sinjhoro',
+      'Tando Adam Khan',
+    ]
   };
 
   //Result
@@ -103,8 +304,8 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    emailController = TextEditingController(text: "admin@gmail.com");
-    passwordController = TextEditingController(text: "111222");
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
     nameController = TextEditingController();
     registerEmailController = TextEditingController();
     registerPasswordController = TextEditingController();
@@ -151,10 +352,23 @@ class LoginController extends GetxController {
             userData = value.data();
             if (userData!['role'] == "admin") {
               isLoading.value = false;
-              Get.to(Home());
+              Get.to(() => Home());
             } else if (userData!['role'] == "voter") {
               isLoading.value = false;
-              Get.to(HomeScreen());
+              if (userData!["status"] == "accepted") {
+                Get.to(() => HomeScreen());
+              } else {
+                isLoading.value = false;
+                Get.snackbar(
+                  "In Process",
+                  "Account not verified.",
+                  icon: const Icon(
+                    Icons.cancel_rounded,
+                    color: Colors.red,
+                    size: 24,
+                  ),
+                );
+              }
             } else {
               isLoading.value = false;
               Get.defaultDialog(

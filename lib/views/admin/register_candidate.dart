@@ -111,6 +111,25 @@ class RegisterCandidate extends GetView<LoginController> {
                     return null;
                   },
                   isListOfString: true,
+                  hintText: "Candidate",
+                  fillColor: Colors.grey.shade200,
+                  items: const [
+                    "MNA",
+                    "MPA",
+                  ],
+                  onChnaged: (val) {},
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomDropDownButton(
+                  validator: (val) {
+                    if (val == null) {
+                      return "Required";
+                    }
+                    return null;
+                  },
+                  isListOfString: true,
                   hintText: "Political Party",
                   fillColor: Colors.grey.shade200,
                   items: const ["PTI", "PMLN", "PPP", "JI"],
